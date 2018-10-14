@@ -4,22 +4,30 @@
 #
 Name     : perl-List-Compare
 Version  : 0.53
-Release  : 1
+Release  : 2
 URL      : https://cpan.metacpan.org/authors/id/J/JK/JKEENAN/List-Compare-0.53.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/J/JK/JKEENAN/List-Compare-0.53.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblist-compare-perl/liblist-compare-perl_0.53-1.debian.tar.xz
 Summary  : 'Compare elements of two or more lists'
 Group    : Development/Tools
 License  : Artistic-1.0 Artistic-1.0-Perl GPL-1.0
-Requires: perl-List-Compare-license
-Requires: perl-List-Compare-man
-Requires: perl(IO::CaptureOutput)
+Requires: perl-List-Compare-license = %{version}-%{release}
+BuildRequires : buildreq-cpan
 BuildRequires : perl(IO::CaptureOutput)
 
 %description
 List::Compare - Compare elements of two or more lists
 This document refers to version 0.53 of List::Compare.  This version was
 released June 07 2015.
+
+%package dev
+Summary: dev components for the perl-List-Compare package.
+Group: Development
+Provides: perl-List-Compare-devel = %{version}-%{release}
+
+%description dev
+dev components for the perl-List-Compare package.
+
 
 %package license
 Summary: license components for the perl-List-Compare package.
@@ -29,19 +37,11 @@ Group: Default
 license components for the perl-List-Compare package.
 
 
-%package man
-Summary: man components for the perl-List-Compare package.
-Group: Default
-
-%description man
-man components for the perl-List-Compare package.
-
-
 %prep
-tar -xf %{SOURCE1}
-cd ..
 %setup -q -n List-Compare-0.53
-mkdir -p %{_topdir}/BUILD/List-Compare-0.53/deblicense/
+cd ..
+%setup -q -T -D -n List-Compare-0.53 -b 1
+mkdir -p deblicense/
 mv %{_topdir}/BUILD/debian/* %{_topdir}/BUILD/List-Compare-0.53/deblicense/
 
 %build
@@ -66,12 +66,12 @@ make TEST_VERBOSE=1 test
 
 %install
 rm -rf %{buildroot}
-mkdir -p %{buildroot}/usr/share/doc/perl-List-Compare
-cp deblicense/copyright %{buildroot}/usr/share/doc/perl-List-Compare/deblicense_copyright
+mkdir -p %{buildroot}/usr/share/package-licenses/perl-List-Compare
+cp deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-List-Compare/deblicense_copyright
 if test -f Makefile.PL; then
-make pure_install PERL_INSTALL_ROOT=%{buildroot}
+make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
-./Build install --installdirs=site --destdir=%{buildroot}
+./Build install --installdirs=vendor --destdir=%{buildroot}
 fi
 find %{buildroot} -type f -name .packlist -exec rm -f {} ';'
 find %{buildroot} -depth -type d -exec rmdir {} 2>/dev/null ';'
@@ -80,18 +80,18 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files
 %defattr(-,root,root,-)
-/usr/lib/perl5/site_perl/5.26.1/List/Compare.pm
-/usr/lib/perl5/site_perl/5.26.1/List/Compare/Base/_Auxiliary.pm
-/usr/lib/perl5/site_perl/5.26.1/List/Compare/Base/_Engine.pm
-/usr/lib/perl5/site_perl/5.26.1/List/Compare/Functional.pm
+/usr/lib/perl5/vendor_perl/5.26.1/List/Compare.pm
+/usr/lib/perl5/vendor_perl/5.26.1/List/Compare/Base/_Auxiliary.pm
+/usr/lib/perl5/vendor_perl/5.26.1/List/Compare/Base/_Engine.pm
+/usr/lib/perl5/vendor_perl/5.26.1/List/Compare/Functional.pm
 
-%files license
-%defattr(-,root,root,-)
-/usr/share/doc/perl-List-Compare/deblicense_copyright
-
-%files man
+%files dev
 %defattr(-,root,root,-)
 /usr/share/man/man3/List::Compare.3
 /usr/share/man/man3/List::Compare::Base::_Auxiliary.3
 /usr/share/man/man3/List::Compare::Base::_Engine.3
 /usr/share/man/man3/List::Compare::Functional.3
+
+%files license
+%defattr(0644,root,root,0755)
+/usr/share/package-licenses/perl-List-Compare/deblicense_copyright
