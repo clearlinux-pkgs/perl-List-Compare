@@ -4,7 +4,7 @@
 #
 Name     : perl-List-Compare
 Version  : 0.53
-Release  : 11
+Release  : 12
 URL      : https://cpan.metacpan.org/authors/id/J/JK/JKEENAN/List-Compare-0.53.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/J/JK/JKEENAN/List-Compare-0.53.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblist-compare-perl/liblist-compare-perl_0.53-1.debian.tar.xz
@@ -79,7 +79,7 @@ make TEST_VERBOSE=1 test
 %install
 rm -rf %{buildroot}
 mkdir -p %{buildroot}/usr/share/package-licenses/perl-List-Compare
-cp %{_builddir}/List-Compare-0.53/deblicense/copyright %{buildroot}/usr/share/package-licenses/perl-List-Compare/53adf2d8950d2ff97187db18242e087fd51d6bef
+cp %{_builddir}/debian/copyright %{buildroot}/usr/share/package-licenses/perl-List-Compare/53adf2d8950d2ff97187db18242e087fd51d6bef
 if test -f Makefile.PL; then
 make pure_install PERL_INSTALL_ROOT=%{buildroot} INSTALLDIRS=vendor
 else
@@ -106,7 +106,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.1/List/Compare.pm
-/usr/lib/perl5/vendor_perl/5.30.1/List/Compare/Base/_Auxiliary.pm
-/usr/lib/perl5/vendor_perl/5.30.1/List/Compare/Base/_Engine.pm
-/usr/lib/perl5/vendor_perl/5.30.1/List/Compare/Functional.pm
+/usr/lib/perl5/vendor_perl/5.30.2/List/Compare.pm
+/usr/lib/perl5/vendor_perl/5.30.2/List/Compare/Base/_Auxiliary.pm
+/usr/lib/perl5/vendor_perl/5.30.2/List/Compare/Base/_Engine.pm
+/usr/lib/perl5/vendor_perl/5.30.2/List/Compare/Functional.pm
