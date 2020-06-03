@@ -4,7 +4,7 @@
 #
 Name     : perl-List-Compare
 Version  : 0.53
-Release  : 12
+Release  : 13
 URL      : https://cpan.metacpan.org/authors/id/J/JK/JKEENAN/List-Compare-0.53.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/J/JK/JKEENAN/List-Compare-0.53.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblist-compare-perl/liblist-compare-perl_0.53-1.debian.tar.xz
@@ -106,7 +106,7 @@ find %{buildroot} -type f -name '*.bs' -empty -exec rm -f {} ';'
 
 %files perl
 %defattr(-,root,root,-)
-/usr/lib/perl5/vendor_perl/5.30.2/List/Compare.pm
-/usr/lib/perl5/vendor_perl/5.30.2/List/Compare/Base/_Auxiliary.pm
-/usr/lib/perl5/vendor_perl/5.30.2/List/Compare/Base/_Engine.pm
-/usr/lib/perl5/vendor_perl/5.30.2/List/Compare/Functional.pm
+/usr/lib/perl5/vendor_perl/5.30.3/List/Compare.pm
+/usr/lib/perl5/vendor_perl/5.30.3/List/Compare/Base/_Auxiliary.pm
+/usr/lib/perl5/vendor_perl/5.30.3/List/Compare/Base/_Engine.pm
+/usr/lib/perl5/vendor_perl/5.30.3/List/Compare/Functional.pm
