@@ -1,2 +1,2 @@
-0.53
-perl(IO::CaptureOutput)
+0.55
+perl(Capture::Tiny)
