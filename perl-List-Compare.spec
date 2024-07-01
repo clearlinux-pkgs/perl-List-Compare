@@ -4,7 +4,7 @@
 #
 Name     : perl-List-Compare
 Version  : 0.55
-Release  : 26
+Release  : 27
 URL      : https://cpan.metacpan.org/authors/id/J/JK/JKEENAN/List-Compare-0.55.tar.gz
 Source0  : https://cpan.metacpan.org/authors/id/J/JK/JKEENAN/List-Compare-0.55.tar.gz
 Source1  : http://http.debian.net/debian/pool/main/libl/liblist-compare-perl/liblist-compare-perl_0.53-1.debian.tar.xz
